@@ -7,8 +7,14 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[id])
-    respond_with(@question)
+    @question = Question.find(params[:id])
+    @answers = @question.answers
+    
+    if !params[:show]
+      respond_with(@question)
+    else
+      respond_with(@answers)
+    end
   end
 
   def new

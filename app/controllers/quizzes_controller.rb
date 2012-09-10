@@ -7,8 +7,14 @@ class QuizzesController < ApplicationController
   end
 
   def show
-    @quiz = Quiz.find(params[id])
-    respond_with(@quiz)
+    @quiz = Quiz.find(params[:id])
+    @questions = @quiz.questions
+
+    if !params[:show]
+      respond_with(@quiz)
+    else
+      respond_with(@questions)
+    end
   end
 
   def new
